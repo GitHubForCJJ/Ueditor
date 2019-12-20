@@ -21,7 +21,12 @@ namespace Ueditor
 
         public override void Process()
         {
-            Sources = Request.Form.GetValues("source[]");
+            //Sources = Request.Form.GetValues("source[]");
+            Sources = Request.Params.GetValues("source[]");
+            if (Sources.Length == 0 || Sources == null)
+            {
+                Sources = Request.QueryString.GetValues("source[]");
+            }
             if (Sources == null || Sources.Length == 0)
             {
                 WriteJson(new
@@ -60,7 +65,7 @@ namespace Ueditor
         }
         public Crawler Fetch()
         {
-            var request = HttpWebRequest.Create(this.SourceUrl) as HttpWebRequest;
+            var request = WebRequest.Create(this.SourceUrl);
             using (var response = request.GetResponse() as HttpWebResponse)
             {
                 if (response.StatusCode != HttpStatusCode.OK)
@@ -82,17 +87,30 @@ namespace Ueditor
                         name = "Crawler";
                     }
                     var stream = response.GetResponseStream();
-                    HttpResult res = QiniutokenHelper.UploadFile(stream, name,out string servePath);
-                    if (res.Code == 200)
+                    var reader = new BinaryReader(stream);
+                    byte[] bytes;
+                    string servePath = "";
+                    using (var ms = new MemoryStream())
                     {
-                        this.ServerUrl = servePath;
-                        State = "SUCCESS";
-                    }
-                    else
-                    {
-                        State = "Error";
-                    }
+                        byte[] buffer = new byte[4096];
+                        int count;
+                        while ((count = reader.Read(buffer, 0, buffer.Length)) != 0)
+                        {                      
+                            ms.Write(buffer, 0, count);
+                        }
+                        HttpResult res = QiniutokenHelper.UploadFile(ms, name, out servePath);
 
+
+                        if (res.Code == 200)
+                        {
+                            this.ServerUrl = servePath;
+                            State = "SUCCESS";
+                        }
+                        else
+                        {
+                            State = "Error";
+                        }
+                    }
                 }
                 catch (Exception e)
                 {

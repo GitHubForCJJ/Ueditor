@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ueditor", "Ueditor\Ueditor.csproj", "{AD0ABE58-A5EE-4B25-9ABE-B0B069A852CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poster", "Poster\Poster.csproj", "{2B8DCCA5-148E-42DA-9281-5B34AD3EAF5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{6549C2E7-87DF-49AD-AFE7-BF4BED2118F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{AD0ABE58-A5EE-4B25-9ABE-B0B069A852CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD0ABE58-A5EE-4B25-9ABE-B0B069A852CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD0ABE58-A5EE-4B25-9ABE-B0B069A852CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8DCCA5-148E-42DA-9281-5B34AD3EAF5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8DCCA5-148E-42DA-9281-5B34AD3EAF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8DCCA5-148E-42DA-9281-5B34AD3EAF5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8DCCA5-148E-42DA-9281-5B34AD3EAF5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6549C2E7-87DF-49AD-AFE7-BF4BED2118F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6549C2E7-87DF-49AD-AFE7-BF4BED2118F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6549C2E7-87DF-49AD-AFE7-BF4BED2118F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6549C2E7-87DF-49AD-AFE7-BF4BED2118F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
