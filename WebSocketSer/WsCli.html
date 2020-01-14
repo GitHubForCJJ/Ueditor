@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>WebSocket测试页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        ul,
+        li {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        用户名:<input type="text" id="username" value="carson" /> 密码:<input type="text" id="userpass" value="pass123" />
+        <button type="button" id="btnSub">submit</button>
+    </div>
+    <ul id="outCnt"></ul>
+    <script>
+        var echo = function(text) {
+            var echoone = function(text) {
+                var dom = document.createElement("li");
+                var t = document.createTextNode(text);
+                dom.appendChild(t);
+                var cnt = document.getElementById("outCnt");
+                cnt.appendChild(dom);
+            };
+            if (Array.isArray(text)) {
+                text.map(function(t) {
+                    echoone(t);
+                });
+            } else {
+                echoone(text);
+            }
+        };
+
+
+        let wsc;
+        var wsurl = "ws://localhost:6688/GoChart";
+        (function() {
+            if ("WebSocket" in window) {
+                //初始化连接
+                echo("正在连接");
+                wsc = new WebSocket(wsurl);
+                wsc.onopen = function() {
+                    echo("连接成功");
+                };
+                wsc.onclose = function() {
+                    echo("服务关闭");
+                };
+                wsc.onmessage = function(e) {
+                    echo(e.data);
+                    console.log(e.data);
+                };
+
+                //提交通讯
+                document.getElementById("btnSub").addEventListener('click', function() {
+                    var username = document.getElementById("username").value;
+                    var userpass = document.getElementById("userpass").value;
+                    if (wsc.readyState == 1) {
+                        wsc.send(JSON.stringify({
+                            UserName: username,
+                            UserPass: userpass
+                        }));
+                    } else {
+                        echo("服务不可用，可能是凉了");
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>
