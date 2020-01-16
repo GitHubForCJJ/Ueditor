@@ -12,8 +12,10 @@ namespace TaskWork
     /// </summary>
     public abstract class BaseWork
     {
-        public Timer Timer = new Timer();
-
+        /// <summary>
+        /// 时间计时器
+        /// </summary>
+        System.Timers.Timer Timer = new System.Timers.Timer();
         /// <summary>
         /// 运行成功次数
         /// </summary>
@@ -83,7 +85,7 @@ namespace TaskWork
                 else
                 {
                     DateTime now = DateTime.Now;
-                    DateTime date = DateTime.Parse(now.ToString("yyyy-MM-dd") +" "+ RunTime);
+                    DateTime date = DateTime.Parse(now.ToString("yyyy-MM-dd") + " " + RunTime);
                     if (now > date && now < date.AddHours(1))
                     {
                         Timer.Stop();

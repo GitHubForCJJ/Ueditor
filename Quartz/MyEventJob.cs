@@ -7,7 +7,7 @@ using Quartz;
 
 namespace QuartzDemo
 {
-    public class MyEventJob : IJob
+public class MyEventJob : IJob
     {
         /// <summary>
         /// 作业调度定时执行的方法
