@@ -23,7 +23,7 @@ namespace Poster
         /// <param name="headTitle">海报二维码中部文字</param>
         /// <param name="logoImg">海报二维码内的logo</param>
         /// <returns></returns>
- public static string CreatePoster(string url, string headImg, string headTitle,string bodyTitle, string logoImg)
+        public static string CreatePoster(string url, string headImg, string headTitle, string bodyTitle, string logoImg)
         {
             var posPath = "";
             try
@@ -75,7 +75,7 @@ namespace Poster
                 {
                     bodyStr = bodyTitle;
                 }
-                g.DrawString(bodyStr, new Font("黑体", 20, FontStyle.Bold), txtBrush, new Point(ob.Width / 2, headHeight+20), txtFromat);
+                g.DrawString(bodyStr, new Font("黑体", 20, FontStyle.Bold), txtBrush, new Point(ob.Width / 2, headHeight + 20), txtFromat);
                 //二维码地址
                 var encoder = new QrEncoder(ErrorCorrectionLevel.M);//设置二维码的容错率
                 QrCode qrCode = encoder.Encode(url);
